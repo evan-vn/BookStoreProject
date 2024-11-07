@@ -29,6 +29,10 @@ public class ReviewService {
     public void deleteReview(int id){
         reviewRepository.deleteById(id);
     }
+    //For api
+    public  void createNewReview(Review review){
+        reviewRepository.save(review);
+    }
 
 
 

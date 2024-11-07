@@ -16,9 +16,9 @@
 <div align="center">
 
   <div class="container" style="margin-top: 15px;">
-    <h1 data-th-text="${title}"></h1>
+    <h3 data-th-text="${title}"></h3>
     <div >
-      <form action="/admin/book/createBook" method="post" style="max-width: 400px; margin: 0 auto;" modelAttribute="book">
+      <form class="custom-form" action="/admin/book/createBook" method="post"  modelAttribute="book">
         <div >
           <label >Title:</label>
           <div >
@@ -41,7 +41,7 @@
         <div >
           <label >Category:</label>
           <div>
-          <select  path="categoryId"  id="category.categoryId" name="category.categoryId"  style="width:20ch; height:2em;">
+          <select  path="categoryId"  id="category.categoryId" name="category.categoryId"  >
             <option selected></option>
             <option th:each="c : ${categoryList}" th:value="${c.categoryId}" th:text="${c.categoryName}"></option>
           </select>

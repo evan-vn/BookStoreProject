@@ -16,19 +16,19 @@
 <div align="center">
   <div class="row">&nbsp;</div>
   <div class="container" style="margin-top: 15px;">
-    <h1 data-th-text="${title}"></h1>
+    <h3 data-th-text="${title}"></h3>
     <div >
-      <form  th:action="@{/admin/review/edit/{id}(id=${review.reviewId})}" method="post" style="max-width: 400px; margin: 0 auto;" >
+      <form class="custom-form"  th:action="@{/admin/review/edit/{id}(id=${review.reviewId})}" method="post"  >
         <div >
           <label >Title:</label>
           <div >
-            <input type="text" id="title" name="title" size="20"  minlength="5" maxlength="30"  data-th-value="${review.book.title}" />
+            <input type="text" id="title" name="title"   minlength="5" maxlength="30"  data-th-value="${review.book.title}" />
           </div>
         </div>
         <div >
           <label >Customer Name:</label>
           <div >
-            <input type="text" id="firstName" name="firstName" size="20"   maxlength="30"  data-th-value="${review.customer.firstName}"/>
+            <input type="text" id="firstName" name="firstName"   maxlength="30"  data-th-value="${review.customer.firstName}"/>
           </div>
         </div>
         <div >

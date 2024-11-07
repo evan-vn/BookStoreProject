@@ -51,6 +51,10 @@ public class CustomerService {
         }
         return existed;
     }
+    //extra create a customer for api
+    public Customer createCustomer(Customer customer){
+        return customerRepository.save(customer);
+    }
 
 
 

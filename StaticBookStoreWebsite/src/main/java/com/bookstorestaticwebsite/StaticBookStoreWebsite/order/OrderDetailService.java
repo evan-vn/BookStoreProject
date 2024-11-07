@@ -30,6 +30,11 @@ public class OrderDetailService {
         orderDetailRepository.deleteById(id);
     }
 
+    //For API
+    public void createOrder(OrderDetail order){
+        orderDetailRepository.save(order);
+    }
+
 
 
 

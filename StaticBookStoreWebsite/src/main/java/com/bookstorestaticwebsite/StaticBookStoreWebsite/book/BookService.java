@@ -64,7 +64,8 @@ public class BookService {
         }
         return existed;
     }
-    public String getImageData(byte[] image, Book book){
-        return Base64.getMimeEncoder().encodeToString(image);
+    public List<Book> findBookByCategoryName(String categoryName){
+        return bookRepository.findByCategory_CategoryName(categoryName);
     }
+
 }

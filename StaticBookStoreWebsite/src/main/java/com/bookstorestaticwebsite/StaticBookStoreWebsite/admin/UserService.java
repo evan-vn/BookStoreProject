@@ -26,10 +26,10 @@ public class UserService {
     }
     public void updateUser(User user, long userId){
         User existing = getUserById(userId);
-        if (checkEmailExist(existing)){
-            System.out.println("Already exist");
-            return;
-        }
+//        if (checkEmailExist(existing)){
+//            System.out.println("Already exist");
+//            return;
+//        }
         existing.setEmail(user.getEmail());
         existing.setPassword(user.getPassword());
         existing.setFullName(user.getFullName());

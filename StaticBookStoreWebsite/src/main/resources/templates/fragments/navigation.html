@@ -8,34 +8,55 @@
 </head>
 <body>
   <nav id="header">
-
     <div align="center">
-      <div align="=center">
+      <div class="banner">
 
-        <img th:src="@{/images/utility/bookStoreBanner.png}" alt="">
-
+        <a href="/admin/">  <img th:src="@{/images/utility/banner.png}" alt=""> </a>
       </div>
       <div>
-        Welcome, Admin |<a href="logout">Logout</a>
+        <h5>Welcome, Admin |<a href="logout">Logout</a></h5>
       </div>
 
-      <div>
-        <a href="/admin/">Home</a> |
-        <a href="/admin/all">Users</a> |
-        <a href="/admin/category/all">Categories</a> |
-        <a href="/admin/book/all">Books</a> |
-        <a href="/admin/customer/all">Customers</a> |
-        <a href="/admin/review/all">Reviews</a> |
-        <a href="/admin/order/all">Orders</a>
-      </div>
+
+        <div id="header-icons">
+          <div style="display:table-cell; padding-top: 20px; padding-right:20px">
+            <a href="/admin/"> <img th:src="@{/images/utility/home_button.png}" alt="">
+              <br/>Home</a>
+          </div>
+          <div style="display:table-cell; padding-top: 20px; padding-right:20px">
+            <a href="/admin/all"> <img th:src="@{/images/utility/users.png}" alt="">
+              <br/>Users</a>
+          </div>
+            <div style="display:table-cell; padding-top: 20px; padding-right:20px">
+            <a href="/admin/category/all"><img th:src="@{/images/utility/category.png}" alt="">
+              <br/> Categories</a>
+            </div>
+              <div style="display:table-cell; padding-top: 20px; padding-right:20px">
+            <a href="/admin/book/all"><img th:src="@{/images/utility/bookstack.png}" alt="">
+              <br/>Books</a>
+              </div>
+                <div style="display:table-cell; padding-top: 20px; padding-right:20px">
+            <a href="/admin/customer/all"><img th:src="@{/images/utility/customer.png}" alt="">
+              <br/>Customers</a>
+                </div>
+                  <div style="display:table-cell; padding-top: 20px; padding-right:20px">
+            <a href="/admin/review/all"><img th:src="@{/images/utility/review.png}" alt="">
+              <br/>Review</a>
+                  </div>
+          <div style="display:table-cell; padding-top: 20px; padding-right:20px">
+            <a href="/admin/order/all"><img th:src="@{/images/utility/order.png}" alt="">
+              <br/> Orders</a>
+          </div>
+
+        </div>
+
     </div>
 
-
     <div align="center">
-      <div class="row">&nbsp;</div>
-      <div class="row">
-        <div class="col text-center">
-          <h3>Administrative Dashboard</h3>
+      <br/>
+      <div>
+        <div>
+          <h1>Administrative Dashboard</h1>
         </div>
       </div>
     </div>
@@ -44,8 +65,11 @@
 
 <nav id="footer">
   <div align="center">
-    <h4>Bookstore Administration</h4>
-    <h4><i>(C) BookStoreOnline. All rights reserved</i></h4>
+    <div></div>
+    <br/>
+    <hr width="60%" />
+    <h5>Bookstore Administration</h5>
+    <h5><i>(C) BookStoreOnline. All rights reserved</i></h5>
   </div>
 
 </nav>

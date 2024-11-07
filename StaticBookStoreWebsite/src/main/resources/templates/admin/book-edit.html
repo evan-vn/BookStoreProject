@@ -16,9 +16,9 @@
 <div align="center">
   <div class="row">&nbsp;</div>
   <div class="container" style="margin-top: 15px;">
-    <h1 data-th-text="${title}"></h1>
+    <h3 data-th-text="${title}"></h3>
     <div >
-      <form  th:action="@{/admin/book/edit/{bId}(bId=${book.bookId})}" method="post" style="max-width: 400px; margin: 0 auto;" >
+      <form class="custom-form" th:action="@{/admin/book/edit/{bId}(bId=${book.bookId})}" method="post" >
         <div >
           <label >Title:</label>
           <div >
@@ -41,7 +41,7 @@
         <div >
           <label >Category:</label>
           <div>
-          <select  path="categoryId"  id="category.categoryId" name="category.categoryId"  style="width:20ch; height:2em;">
+          <select  path="categoryId"  id="category.categoryId" name="category.categoryId" >
             <option th:each="c : ${categoryList}" th:value="${c.categoryId}" th:text="${c.categoryName}" th:if="${c.categoryId == book.category.categoryId}" selected="true"></option>
             <option th:each="c : ${categoryList}" th:value="${c.categoryId}" th:text="${c.categoryName}"></option>
           </select>

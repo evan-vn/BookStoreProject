@@ -1,14 +1,14 @@
 package com.bookstorestaticwebsite.StaticBookStoreWebsite.order;
 
 import com.bookstorestaticwebsite.StaticBookStoreWebsite.book.Book;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
 
 @Entity
 @Table(name="orderdetails")
 public class OrderDetail {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EmbeddedId
     private OrderDetailID orderDetailID = new OrderDetailID();
 
@@ -17,10 +17,12 @@ public class OrderDetail {
     @NonNull
     private float subtotal;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="bookId", nullable = false)
     private Book book;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="bookOrderId", nullable = false)
     private BookOrder bookOrder;
