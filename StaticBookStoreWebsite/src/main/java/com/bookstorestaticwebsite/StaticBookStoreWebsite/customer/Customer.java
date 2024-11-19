@@ -164,8 +164,12 @@ public class Customer {
     public void setRegisterDate(Date registerDate) {
         this.registerDate = registerDate;
     }
+
     @Override
     public String toString(){
         return "Full name: " + this.firstName + " " + this.lastName;
+    }
+    public String getFullAddress(){
+        return this.addressLine1 + ", " + this.city + ", " + this.state + ", " + this.country + ", " + this.zipcode;
     }
 }

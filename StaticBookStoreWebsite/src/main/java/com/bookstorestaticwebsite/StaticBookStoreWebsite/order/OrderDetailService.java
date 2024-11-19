@@ -15,16 +15,19 @@ public class OrderDetailService {
     public OrderDetail getOrderDetailById(int id){
         return orderDetailRepository.findById(id).orElse(null);
     }
+//    public List<OrderDetail> getOrderDetailByBookOrderId(int bookOrderId){
+//        return orderDetailRepository.findByBookOrderBookOrderId(bookOrderId);
+//    }
 
-    public void updateOrderDetail(OrderDetail order, int id){
-        OrderDetail existing = getOrderDetailById(id);
-        existing.setBook(order.getBook());
-        existing.setBookOrder(order.getBookOrder());
-        existing.setQuantity(order.getQuantity());
-        existing.setSubtotal(order.getSubtotal());
-        orderDetailRepository.save(existing);
-
-    }
+//    public void updateOrderDetail(OrderDetail order, int id){
+//        OrderDetail existing = getOrderDetailById(id);
+//        existing.setBook(order.getBook());
+//        existing.setBookOrder(order.getBookOrder());
+//        existing.setQuantity(order.getQuantity());
+//        existing.setSubtotal(order.getSubtotal());
+//        orderDetailRepository.save(existing);
+//
+//    }
 
     public void deleteOrder(int id){
         orderDetailRepository.deleteById(id);

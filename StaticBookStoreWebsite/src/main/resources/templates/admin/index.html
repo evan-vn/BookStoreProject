@@ -48,7 +48,15 @@
         </thead>
 
         <tbody>
-
+        <tr th:each="order : ${recentOrders}">
+            <td th:text="${order.bookOrderId}"></td>
+            <td th:text="${order.customer.fullName}"></td>
+            <td th:text="${order.getTotalCopies}"></td>
+            <td th:text="${order.total}"></td>
+            <td th:text="${order.paymentMethod}"></td>
+            <td th:text="${order.status}"></td>
+            <td th:text="${order.orderDate}"></td>
+        </tr>
         </tbody>
     </table>
 </div>
@@ -64,9 +72,10 @@
 
 <div class="row">
     <table class="table table-bordered table-striped table-hover table-responsive-sm">
-        <thead class="thead-dark">
+        <thead>
         <tr>
-            <th>Book</th>
+            <th>Image</th>
+            <th>Book Title</th>
             <th>Rating</th>
             <th>Headline</th>
             <th>Customer</th>
@@ -75,7 +84,14 @@
         </thead>
 
         <tbody>
-
+        <tr th:each="book : ${top3BooksWithReview}">
+            <td><img th:src="@{${book.imagePath}}" alt="" width="50" height="70"></td>
+            <td th:text="${book.title}"></td>
+            <td th:if="${#lists.size(book.reviews) > 0}" th:text="${book.reviews[0].rating}"></td>
+            <td th:if="${#lists.size(book.reviews) > 0}" th:text="${book.reviews[0].headline}"></td>
+            <td th:if="${#lists.size(book.reviews) > 0}" th:text="${book.reviews[0].customer.fullName}"></td>
+            <td th:if="${#lists.size(book.reviews) > 0}" th:text="${book.reviews[0].dateReview}"></td>
+        </tr>
         </tbody>
     </table>
 </div>
@@ -91,11 +107,11 @@
 
 <div class="row">
     <div class="col text-center">
-        Total Users:  &nbsp;&nbsp;&nbsp;&nbsp;
-        Total Books:  &nbsp;&nbsp;&nbsp;&nbsp;
-        Total Customers:  &nbsp;&nbsp;&nbsp;&nbsp;
-        Total Reviews: &nbsp;&nbsp;&nbsp;&nbsp;
-        Total Orders:
+        Total Users:  <span th:text="${totalUsers}" > </span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Total Books: <span th:text="${totalBooks}" > </span>  &nbsp;&nbsp;&nbsp;&nbsp;
+        Total Customers: <span th:text="${totalCustomers}" > </span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Total Reviews:<span th:text="${totalReviews}" > </span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Total Orders:<span th:text="${totalOrders}" > </span>
 
 
     </div>

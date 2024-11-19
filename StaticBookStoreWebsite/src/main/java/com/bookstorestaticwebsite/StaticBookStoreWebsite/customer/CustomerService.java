@@ -56,7 +56,9 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
-
+    public long getTotalCustomers(){
+        return customerRepository.countTotalCustomers();
+    }
 
 
 }

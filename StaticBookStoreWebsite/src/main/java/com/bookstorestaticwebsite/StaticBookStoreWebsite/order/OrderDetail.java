@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
 
+import java.util.List;
+
 @Entity
 @Table(name="orderdetails")
 public class OrderDetail {
@@ -17,15 +19,24 @@ public class OrderDetail {
     @NonNull
     private float subtotal;
 
-    @JsonIgnore
+
     @ManyToOne
-    @JoinColumn(name="bookId", nullable = false)
+    @JoinColumn(name="bookId",insertable = false, updatable = false, nullable = false)
     private Book book;
 
-    @JsonIgnore
+
     @ManyToOne
-    @JoinColumn(name="bookOrderId", nullable = false)
+    @JoinColumn(name="bookOrderId", insertable = false, updatable = false,nullable = false)
     private BookOrder bookOrder;
+
+
+    public BookOrder getBookOrder() {
+        return bookOrder;
+    }
+
+    public void setBookOrder(BookOrder bookOrder) {
+        this.bookOrder = bookOrder;
+    }
 
     public OrderDetail() {
     }
@@ -34,20 +45,7 @@ public class OrderDetail {
         this.orderDetailID = orderDetailID;
     }
 
-    public OrderDetail(OrderDetailID orderDetailID, int quantity, float subtotal, Book book, BookOrder bookOrder) {
-        this.orderDetailID = orderDetailID;
-        this.quantity = quantity;
-        this.subtotal = subtotal;
-        this.book = book;
-        this.bookOrder = bookOrder;
-    }
 
-    public OrderDetail(int quantity, float subtotal, Book book, BookOrder bookOrder) {
-        this.quantity = quantity;
-        this.subtotal = subtotal;
-        this.book = book;
-        this.bookOrder = bookOrder;
-    }
 
     public OrderDetailID getOrderDetailID() {
         return orderDetailID;
@@ -81,11 +79,8 @@ public class OrderDetail {
         this.book = book;
     }
 
-    public BookOrder getBookOrder() {
-        return bookOrder;
+    public float subtotalOfOrder(){
+        return this.quantity * getBook().getPrice();
     }
 
-    public void setBookOrder(BookOrder bookOrder) {
-        this.bookOrder = bookOrder;
-    }
 }

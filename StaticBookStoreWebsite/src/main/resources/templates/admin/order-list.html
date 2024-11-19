@@ -33,14 +33,14 @@
       <tbody>
       <tr th:each="o, stat : ${ordersList}">
         <td th:text="${stat.index + 1}">1</td>
-        <td><a th:text=" ${o.bookOrder.customer.firstName}"> </a></td>
-        <td><a th:text=" ${o.quantity}"> </a></td>
-        <td><a th:text=" ${o.subtotal}"> </a></td>
-        <td><a th:text=" ${o.bookOrder.paymentMethod}"> </a></td>
-        <td><a th:text=" ${o.bookOrder.status}"> </a></td>
-        <td><a th:text=" ${o.bookOrder.orderDate}"> </a></td>
-        <td> Detail
-          &nbsp; Edit &nbsp;
+        <td><a th:text=" ${o.customer.fullName}"> </a></td>
+        <td><a th:text="${o.getTotalCopies}"></a></td>
+        <td><a th:text=" ${o.total}"> </a></td>
+        <td><a th:text=" ${o.paymentMethod}"> </a></td>
+        <td><a th:text=" ${o.status}"> </a></td>
+        <td><a th:text=" ${o.orderDate}"> </a></td>
+        <td>  <a data-th-href="@{/admin/order/detail/{oId} (oId=${o.bookOrderId})}">Detail</a> &nbsp;
+          &nbsp; <a data-th-href="@{/admin/order/edit/{oId} (oId=${o.bookOrderId})}">Edit</a> &nbsp;
           Delete&nbsp;
         </td>
 

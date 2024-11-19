@@ -2,40 +2,33 @@ package com.bookstorestaticwebsite.StaticBookStoreWebsite.order;
 
 import com.bookstorestaticwebsite.StaticBookStoreWebsite.book.Book;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Embeddable
 public class OrderDetailID {
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="bookId", nullable = false,insertable=false, updatable = false)
-    private Book book;
-
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="bookOrderId", nullable = false,insertable=false,updatable = false)
-    private BookOrder bookOrder;
+   @Column(name="bookOrderId")
+    private int bookOrderId;
+    @Column(name="bookId")
+    private int bookId;
 
     public OrderDetailID() {
     }
 
-    public Book getBook() {
-        return book;
+
+
+    public int getBookOrderId() {
+        return bookOrderId;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setBookOrderId(int bookOrderId) {
+        this.bookOrderId = bookOrderId;
     }
 
-    public BookOrder getBookOrder() {
-        return bookOrder;
+    public int getBookId() {
+        return bookId;
     }
 
-    public void setBookOrder(BookOrder bookOrder) {
-        this.bookOrder = bookOrder;
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
-
 }

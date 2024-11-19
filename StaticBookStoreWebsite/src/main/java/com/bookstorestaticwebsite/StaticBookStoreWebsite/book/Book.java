@@ -1,10 +1,12 @@
 package com.bookstorestaticwebsite.StaticBookStoreWebsite.book;
 
 import com.bookstorestaticwebsite.StaticBookStoreWebsite.category.Category;
+import com.bookstorestaticwebsite.StaticBookStoreWebsite.review.Review;
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
 
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name="book")
@@ -36,6 +38,17 @@ public class Book {
     @ManyToOne
     @JoinColumn(name="categoryId", nullable = false)
     private Category category;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Review> reviews;
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 
     public Book() {
     }

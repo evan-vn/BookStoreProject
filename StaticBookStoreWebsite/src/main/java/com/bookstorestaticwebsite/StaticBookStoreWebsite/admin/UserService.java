@@ -55,6 +55,9 @@ public class UserService {
         return existed;
     }
 
+    public long getTotalUsers(){
+        return userRepository.countTotalUsers();
+    }
 
 
 

@@ -1,10 +1,16 @@
 package com.bookstorestaticwebsite.StaticBookStoreWebsite.order;
 
+import com.bookstorestaticwebsite.StaticBookStoreWebsite.common.CommonConfig;
 import com.bookstorestaticwebsite.StaticBookStoreWebsite.customer.Customer;
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Date;
+import java.text.DecimalFormat;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="bookorders")
@@ -44,9 +50,24 @@ public class BookOrder {
     @NonNull
     private String status;
 
+
+
     @ManyToOne
     @JoinColumn(name="customerId", nullable = false)
     private Customer customer;
+
+//    @ManyToOne @JoinColumn(name = "orderDetailID", nullable = false)
+//    private OrderDetail orderDetail;
+    @OneToMany(mappedBy = "bookOrder")
+    private Set<OrderDetail> orderDetails = new HashSet<>();
+
+    public Set<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(Set<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
 
     public BookOrder() {
     }
@@ -108,6 +129,13 @@ public class BookOrder {
     public void setOrderDate(@NonNull Date orderDate) {
         this.orderDate = orderDate;
     }
+//    public OrderDetail getOrderDetail() {
+//        return orderDetail;
+//    }
+//
+//    public void setOrderDetail(OrderDetail orderDetail) {
+//        this.orderDetail = orderDetail;
+//    }
 
     @NonNull
     public String getFirstName() {
@@ -197,9 +225,6 @@ public class BookOrder {
         this.paymentMethod = paymentMethod;
     }
 
-    public float getSubtotal() {
-        return subtotal;
-    }
 
     public void setSubtotal(float subtotal) {
         this.subtotal = subtotal;
@@ -210,20 +235,13 @@ public class BookOrder {
     }
 
     public void setShippingFee(float shippingFee) {
-        this.shippingFee = shippingFee;
-    }
-
-    public float getTax() {
-        return tax;
+        this.shippingFee= shippingFee != 0 ? shippingFee : CommonConfig.SHIPPING_FEE;;
     }
 
     public void setTax(float tax) {
         this.tax = tax;
     }
 
-    public float getTotal() {
-        return total;
-    }
 
     public void setTotal(float total) {
         this.total = total;
@@ -245,4 +263,50 @@ public class BookOrder {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
+    public float calculateTotal(){
+        return roundUp(calculateSumSubtotal() + calculateTax() + this.getShippingFee());
+    }
+    public float calculateSumSubtotal(){
+        float subtotal = 0;
+        for(OrderDetail detail: orderDetails){
+            subtotal += detail.subtotalOfOrder();
+        }
+        return roundUp(subtotal);
+    }
+    public float calculateTax(){
+        return roundUp(calculateSumSubtotal() * CommonConfig.TAX_RATE);
+    }
+
+    public String getTax(){
+        DecimalFormat df = new DecimalFormat("#.00");
+        return df.format(calculateTax());
+    }
+
+    public String getSubtotal(){
+        DecimalFormat df = new DecimalFormat("#.00");
+        return df.format(calculateSumSubtotal());
+    }
+
+
+    public String getTotal(){
+        DecimalFormat df = new DecimalFormat("#.00");
+        return df.format(calculateTotal());
+    }
+    private float roundUp(float value){
+        BigDecimal bd = BigDecimal.valueOf(value);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.floatValue();
+    }
+    public int getTotalCopies(){
+        int copy = 0;
+        for(OrderDetail detail: orderDetails){
+            copy += detail.getQuantity();
+        }
+        return copy;
+    }
+    public String getFullName(){
+        return this.firstName + " " + this.lastName;
+    }
+
 }

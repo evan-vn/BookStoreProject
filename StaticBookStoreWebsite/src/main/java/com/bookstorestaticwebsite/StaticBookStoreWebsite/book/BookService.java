@@ -1,9 +1,15 @@
 package com.bookstorestaticwebsite.StaticBookStoreWebsite.book;
 
 import com.bookstorestaticwebsite.StaticBookStoreWebsite.admin.User;
+import com.bookstorestaticwebsite.StaticBookStoreWebsite.review.Review;
+import com.bookstorestaticwebsite.StaticBookStoreWebsite.review.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+
+import org.springframework.data.domain.Pageable;
 import java.util.Base64;
 import java.util.List;
 
@@ -12,6 +18,8 @@ public class BookService {
 
     @Autowired
     private BookRepository bookRepository;
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     public List<Book> getAllBooks(){
         return bookRepository.findAll();
@@ -67,5 +75,31 @@ public class BookService {
     public List<Book> findBookByCategoryName(String categoryName){
         return bookRepository.findByCategory_CategoryName(categoryName);
     }
+
+    //List of review for a book
+    public List<Review> getReviewsForBook(int bId){
+        Book book = getBookById(bId);
+        return reviewRepository.findByBook(book);
+    }
+
+    // get first 3 books with all reviews
+//    public List<Book> getFirst3Books(){
+//        Pageable pageable = PageRequest.of(0, 3);
+//        List<Book> list_3_books = bookRepository.findTop3BooksByReviewDate(pageable);
+//
+//        return list_3_books;
+//    }
+
+
+    public List<Book> getFirst3Books(){
+        Pageable pageable = PageRequest.of(0, 3);
+        List<Book> list_3_books = bookRepository.findTopBooksByLatestReview(pageable);
+        return list_3_books;
+    }
+
+    public long getTotalBooks(){
+        return bookRepository.countTotalBooks();
+    }
+
 
 }
