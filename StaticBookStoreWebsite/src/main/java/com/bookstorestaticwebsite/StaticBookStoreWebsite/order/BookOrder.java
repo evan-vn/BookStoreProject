@@ -129,13 +129,7 @@ public class BookOrder {
     public void setOrderDate(@NonNull Date orderDate) {
         this.orderDate = orderDate;
     }
-//    public OrderDetail getOrderDetail() {
-//        return orderDetail;
-//    }
-//
-//    public void setOrderDetail(OrderDetail orderDetail) {
-//        this.orderDetail = orderDetail;
-//    }
+
 
     @NonNull
     public String getFirstName() {
@@ -144,6 +138,7 @@ public class BookOrder {
 
     public void setFirstName(@NonNull String firstName) {
         this.firstName = firstName;
+
     }
 
     @NonNull
@@ -235,7 +230,7 @@ public class BookOrder {
     }
 
     public void setShippingFee(float shippingFee) {
-        this.shippingFee= shippingFee != 0 ? shippingFee : CommonConfig.SHIPPING_FEE;;
+        this.shippingFee= shippingFee != 0 ? shippingFee : CommonConfig.SHIPPING_FEE;
     }
 
     public void setTax(float tax) {

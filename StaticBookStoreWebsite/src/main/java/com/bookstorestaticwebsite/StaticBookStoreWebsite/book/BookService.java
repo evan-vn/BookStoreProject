@@ -91,10 +91,10 @@ public class BookService {
 //    }
 
 
-    public List<Book> getFirst3Books(){
-        Pageable pageable = PageRequest.of(0, 3);
-        List<Book> list_3_books = bookRepository.findTopBooksByLatestReview(pageable);
-        return list_3_books;
+    public List<Book> getLastestReviewBooks(){
+        Pageable pageable = PageRequest.of(0, 5);
+        List<Book> list_books = bookRepository.findTopBooksByLatestReview(pageable);
+        return list_books;
     }
 
     public long getTotalBooks(){

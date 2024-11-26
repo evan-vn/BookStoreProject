@@ -2,6 +2,7 @@ package com.bookstorestaticwebsite.StaticBookStoreWebsite.review;
 
 
 import com.bookstorestaticwebsite.StaticBookStoreWebsite.book.BookService;
+import com.bookstorestaticwebsite.StaticBookStoreWebsite.common.BaseController;
 import com.bookstorestaticwebsite.StaticBookStoreWebsite.customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,7 @@ import java.util.List;
 //@RestController
 @Controller
 @RequestMapping("/admin/review")
-public class ReviewController {
+public class ReviewController extends BaseController {
     @Autowired
     private ReviewService reviewService;
 

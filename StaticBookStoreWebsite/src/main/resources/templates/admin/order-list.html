@@ -41,7 +41,7 @@
         <td><a th:text=" ${o.orderDate}"> </a></td>
         <td>  <a data-th-href="@{/admin/order/detail/{oId} (oId=${o.bookOrderId})}">Detail</a> &nbsp;
           &nbsp; <a data-th-href="@{/admin/order/edit/{oId} (oId=${o.bookOrderId})}">Edit</a> &nbsp;
-          Delete&nbsp;
+          <a data-th-href="@{/admin/order/delete/{oId} (oId=${o.bookOrderId})}">Delete</a>&nbsp;
         </td>
 
       </tr>

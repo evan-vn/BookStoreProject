@@ -13,8 +13,11 @@
 
         <a href="/admin/">  <img th:src="@{/images/utility/banner.png}" alt=""> </a>
       </div>
-      <div>
-        <h5>Welcome, Admin |<a href="logout">Logout</a></h5>
+      <div class="container text-center">
+        <div class="d-flex justify-content-center align-items-center">
+          <h5 class="mb-0">Welcome, <span th:text="${admin.fullName}">Admin</span>!</h5>
+          <form class="form-inline ms-3" action="/logout" method="post"> <button class="btn btn-outline-success" type="submit">Sign Out</button> </form>
+        </div>
       </div>
 
 
@@ -67,7 +70,7 @@
   <div align="center">
     <div></div>
     <br/>
-    <hr width="60%" />
+    <hr width="80%" />
     <h5>Bookstore Administration</h5>
     <h5><i>(C) BookStoreOnline. All rights reserved</i></h5>
   </div>

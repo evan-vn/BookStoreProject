@@ -38,7 +38,7 @@ body{
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 25px;
-    background-color: #f5efdf;
+    background-color: #A1DD7080;
 }
 
 .custom-form input[type="text"],
@@ -93,4 +93,7 @@ border: 1px solid #ccc;
      height: 100%;
      object-fit: fill;
       display: block;
+}
+a {
+text-decoration: none;
 }

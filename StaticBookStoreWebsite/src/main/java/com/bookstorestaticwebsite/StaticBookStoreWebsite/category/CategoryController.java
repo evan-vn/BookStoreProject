@@ -2,6 +2,7 @@ package com.bookstorestaticwebsite.StaticBookStoreWebsite.category;
 
 
 import com.bookstorestaticwebsite.StaticBookStoreWebsite.admin.User;
+import com.bookstorestaticwebsite.StaticBookStoreWebsite.common.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +12,7 @@ import java.util.List;
 //@RestController
 @Controller
 @RequestMapping("/admin/category")
-public class CategoryController {
+public class CategoryController extends BaseController {
     @Autowired
     private CategoryService service;
 

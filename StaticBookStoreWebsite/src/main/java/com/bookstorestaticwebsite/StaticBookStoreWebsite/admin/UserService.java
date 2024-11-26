@@ -1,6 +1,8 @@
 package com.bookstorestaticwebsite.StaticBookStoreWebsite.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,18 +14,19 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     public List<User> getAllUsers(){return userRepository.findAll();}
 
     public void createNewUser(User user){
-        if(user != null){
-            if(checkEmailExist(user)){
-                System.out.println("Already exist");
-                return;
-            }
-            user = new User(user.getEmail() , user.getPassword(), user.getFullName() );
+
+            user.setFullName(user.getFullName());
+            user.setEmail(user.getEmail());
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
         }
-    }
+
     public void updateUser(User user, long userId){
         User existing = getUserById(userId);
 //        if (checkEmailExist(existing)){
@@ -31,7 +34,7 @@ public class UserService {
 //            return;
 //        }
         existing.setEmail(user.getEmail());
-        existing.setPassword(user.getPassword());
+        existing.setPassword(passwordEncoder.encode(user.getPassword()));
         existing.setFullName(user.getFullName());
         userRepository.save(existing);
     }
@@ -59,6 +62,8 @@ public class UserService {
         return userRepository.countTotalUsers();
     }
 
-
+    public User getUserByEmail(String email){
+        return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException(email + "not found"));
+    }
 
 }

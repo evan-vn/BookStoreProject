@@ -2,11 +2,13 @@ package com.bookstorestaticwebsite.StaticBookStoreWebsite.admin;
 
 
 import com.bookstorestaticwebsite.StaticBookStoreWebsite.book.BookService;
+import com.bookstorestaticwebsite.StaticBookStoreWebsite.common.BaseController;
 import com.bookstorestaticwebsite.StaticBookStoreWebsite.customer.Customer;
 import com.bookstorestaticwebsite.StaticBookStoreWebsite.customer.CustomerService;
 import com.bookstorestaticwebsite.StaticBookStoreWebsite.order.BookOrderService;
 import com.bookstorestaticwebsite.StaticBookStoreWebsite.review.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +17,7 @@ import java.util.List;
 //@RestController
 @Controller
 @RequestMapping("/admin")
-public class UserCotroller {
+public class UserCotroller extends BaseController {
     @Autowired
     private UserService userService;
     @Autowired
@@ -32,8 +34,9 @@ public class UserCotroller {
 //Project Part
 
     @GetMapping("/")
-    public String index(Model model){
-        model.addAttribute("top3BooksWithReview", bookService.getFirst3Books());
+    public String index( Model model){
+
+        model.addAttribute("topBooksWithLatestReview", bookService.getLastestReviewBooks());
         model.addAttribute("recentOrders", bookOrderService.getRecentOrders());
         //statistic
         model.addAttribute("totalUsers", userService.getTotalUsers());

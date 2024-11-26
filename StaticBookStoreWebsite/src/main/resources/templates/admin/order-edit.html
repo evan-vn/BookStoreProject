@@ -60,7 +60,7 @@
           <td th:text="${detail.book.author}"></td>
           <td ><input type="text" id="quantity" name="quantity" size="8"  minlength="1" maxlength="10"  data-th-value="${detail.quantity}" /></td>
           <td th:text="${#numbers.formatDecimal(detail.book.price,2,2)}"></td>
-          <td>Remove</td>
+          <td><a th:href="@{/admin/order/removeBook(bookOrderId=${bookOrder.bookOrderId}, bookId=${detail.book.bookId})}">Remove</a></td>
         </tr>
         <tr> <td colspan="4" style="text-align: right;"><strong>Subtotal:</strong></td>
           <td colspan="2"  th:text="${bookOrder.subtotal}"></td>

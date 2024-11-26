@@ -3,6 +3,7 @@ package com.bookstorestaticwebsite.StaticBookStoreWebsite.book;
 
 import com.bookstorestaticwebsite.StaticBookStoreWebsite.category.Category;
 import com.bookstorestaticwebsite.StaticBookStoreWebsite.category.CategoryService;
+import com.bookstorestaticwebsite.StaticBookStoreWebsite.common.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,7 @@ import java.util.List;
 //@RestController
 @Controller
 @RequestMapping("admin/book")
-public class BookController {
+public class BookController extends BaseController {
 
     @Autowired
     private BookService service;

@@ -2,6 +2,7 @@ package com.bookstorestaticwebsite.StaticBookStoreWebsite.customer;
 
 
 import com.bookstorestaticwebsite.StaticBookStoreWebsite.book.Book;
+import com.bookstorestaticwebsite.StaticBookStoreWebsite.common.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 //@RestController
 @Controller
 @RequestMapping("/admin/customer")
-public class CustomerController {
+public class CustomerController extends BaseController {
     @Autowired
     private CustomerService service;
 

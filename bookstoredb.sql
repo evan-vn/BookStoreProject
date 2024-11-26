@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2024 at 12:54 AM
+-- Generation Time: Nov 26, 2024 at 11:47 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -90,9 +90,7 @@ CREATE TABLE `bookorders` (
 
 INSERT INTO `bookorders` (`book_order_id`, `address_line1`, `address_line2`, `city`, `country`, `first_name`, `last_name`, `order_date`, `payment_method`, `phone`, `shipping_fee`, `state`, `status`, `subtotal`, `tax`, `total`, `zipcode`, `customer_id`) VALUES
 (1, '123 Book St', 'Apt 4B', 'Greensboro', 'USA', 'John', 'Doe', '2023-04-25', 'Credit Card', '555-1234', 5.99, 'NC', 'Processing', 20, 1.5, 26.99, '27401', 1),
-(2, '123 Main St', 'Apt 4B', 'Winston-Salem', 'USA', 'John', 'Doe', '2023-04-10', 'Credit Card', '123-456-7890', 5, 'NC', 'Processing', 45, 0, 50, '27101', 2),
-(3, '456 Oak St', 'Unit 7', 'Greensboro', 'USA', 'Jane', 'Smith', '2023-04-11', 'PayPal', '987-654-3210', 5, 'NC', 'Completed', 70, 0, 75, '27403', 1),
-(4, '789 Pine St', '', 'Charlotte', 'USA', 'Alice', 'Johnson', '2023-04-12', 'Debit Card', '555-123-4567', 10, 'NC', 'Shipped', 90, 0, 100, '28202', 2);
+(2, '123 Main St', 'Apt 4B', 'Winston-Salem', 'USA', 'John', 'Doe', '2023-04-10', 'Credit Card', '123-456-7890', 5, 'NC', 'Processing', 45, 0, 50, '27101', 2);
 
 -- --------------------------------------------------------
 
@@ -147,8 +145,18 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customer_id`, `address_line1`, `address_line2`, `city`, `country`, `email`, `first_name`, `last_name`, `password`, `phone`, `register_date`, `state`, `zipcode`) VALUES
-(1, '123 Main St', 'Apt 4B', 'Winston-Salem', 'USA', 'john.doe@example.com', 'John', 'Brad', 'password123', '123-456-7890', '2023-12-01', 'NC', '27101'),
-(2, '456 Oak St', '', 'Winston-Salem', 'USA', 'jane.smith@example.com', 'Jane', 'Smith', 'securePass678', '234-567-8901', '2023-12-02', 'NC', '27102');
+(1, '123 Main St', 'Apt 4B', 'Winston-Salem', 'USA', 'john.doe@example.com', 'John', 'Brads', 'password123', '123-456-7890', '2023-12-01', 'NC', '27101'),
+(2, '456 Oak St', '', 'Winston-Salem', 'USA', 'jane.smith@example.com', 'Jane', 'Smith', 'securePass678', '234-567-8901', '2023-12-02', 'NC', '27102'),
+(5, '123 Main St', 'Apt 4B', 'Greensboro', 'USA', 'john.doe@example.com', 'John', 'Doe', 'password123', '123-456-7890', '2024-01-01', 'NC', '27401'),
+(6, '456 Oak St', '', 'Greensboro', 'USA', 'jane.smith@example.com', 'Jane', 'Smith', 'password123', '123-456-7891', '2024-02-01', 'NC', '27402'),
+(7, '789 Pine St', 'Suite 5C', 'Greensboro', 'USA', 'alice.johnson@example.com', 'Alice', 'Johnson', 'password123', '123-456-7892', '2024-03-01', 'NC', '27403'),
+(8, '101 Maple St', '', 'Greensboro', 'USA', 'bob.brown@example.com', 'Bob', 'Brown', 'password123', '123-456-7893', '2024-04-01', 'NC', '27404'),
+(9, '202 Birch St', '', 'Greensboro', 'USA', 'charlie.davis@example.com', 'Charlie', 'Davis', 'password123', '123-456-7894', '2024-05-01', 'NC', '27405'),
+(10, '303 Cedar St', 'Apt 2A', 'Greensboro', 'USA', 'dave.miller@example.com', 'Dave', 'Miller', 'password123', '123-456-7895', '2024-06-01', 'NC', '27406'),
+(11, '404 Spruce St', '', 'Greensboro', 'USA', 'eve.wilson@example.com', 'Eve', 'Wilson', 'password123', '123-456-7896', '2024-07-01', 'NC', '27407'),
+(12, '505 Elm St', 'Apt 3D', 'Greensboro', 'USA', 'frank.moore@example.com', 'Frank', 'Moore', 'password123', '123-456-7897', '2024-08-01', 'NC', '27408'),
+(13, '606 Walnut St', '', 'Greensboro', 'USA', 'grace.taylor@example.com', 'Grace', 'Taylor', 'password123', '123-456-7898', '2024-09-01', 'NC', '27409'),
+(14, '707 Chestnut St', 'Suite 6B', 'Greensboro', 'USA', 'harry.anderson@example.com', 'Harry', 'Anderson', 'password123', '123-456-7899', '2024-10-01', 'NC', '27410');
 
 -- --------------------------------------------------------
 
@@ -171,11 +179,7 @@ CREATE TABLE `orderdetails` (
 INSERT INTO `orderdetails` (`order_detail_id`, `quantity`, `subtotal`, `book_id`, `book_order_id`) VALUES
 (2, 2, 29.99, 6, 1),
 (4, 2, 30, 6, 1),
-(5, 1, 20.5, 7, 1),
-(6, 1, 30, 6, 2),
-(7, 1, 15, 8, 2),
-(8, 1, 15, 8, 3),
-(9, 1, 20.5, 7, 4);
+(6, 1, 30, 6, 2);
 
 -- --------------------------------------------------------
 
@@ -198,9 +202,18 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`review_id`, `comment`, `date_review`, `headline`, `rating`, `book_id`, `customer_id`) VALUES
-(1, 'This book changed my life, highly recommended, and I have learned a lot from them', '2023-12-04', 'Amazing Read!', 5, 6, 1),
+(1, 'This book changed my life, highly recommended, and I have learned a lot from them. Example', '2023-12-04', 'Amazing Read!', 5, 6, 1),
 (2, 'Loved the characters and plot, but a bit long.', '2023-12-05', 'Great Story', 4, 7, 2),
-(3, 'Highly recommend', '2024-09-03', 'Fantacy!', 4, 7, 1);
+(3, 'Highly recommend', '2024-09-03', 'Fantacy!', 4, 7, 1),
+(24, 'I thoroughly enjoyed this book. Highly recommend it!', '2024-01-15', 'Excellent read', 5, 6, 10),
+(25, 'The storyline was engaging and well-written.', '2024-02-20', 'Great book', 4, 8, 5),
+(26, 'The book was okay, but I expected more.', '2024-03-10', 'Average', 3, 10, 12),
+(27, 'One of the best books I have ever read.', '2024-04-05', 'Fantastic!', 5, 6, 11),
+(28, 'I didn’t enjoy the book as much as I thought I would.', '2024-05-25', 'Not my taste', 2, 16, 13),
+(29, 'The book was well-written and interesting.', '2024-06-12', 'Good book', 4, 15, 14),
+(30, 'The book had its moments but overall it was just fine.', '2024-07-08', 'It was okay', 3, 14, 7),
+(31, 'Absolutely loved the book from start to finish.', '2024-08-19', 'Loved it!', 5, 7, 12),
+(32, 'I found the book to be quite enjoyable.', '2024-09-23', 'Enjoyable', 4, 14, 9);
 
 -- --------------------------------------------------------
 
@@ -220,10 +233,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `email`, `full_name`, `password`) VALUES
-(1, 'alice@example.com', 'Alice Johnson', 'password123'),
-(52, 'admintest@yahoo.com', 'Admin Admin', 'passowd1'),
-(352, 'testtest@gmail.com', 'Testing Edit', 'passowd123'),
-(502, 'testingnewone@gmail.com', 'John Smith', '123123');
+(602, 'admin@gmail.com', 'Admin Admin', '$2a$10$MKSfaxXOA0COC86lWtUv8ewOvKgcYyZhFiaP5vsapDpJdJguadVdO'),
+(652, 'admin2@gmail.com', 'Admin 2', '$2a$10$qPjyE9XdjT/xwUCr78cr8.AkBf0u1GHeD2RfEikIP5KVOkjiTmKaq'),
+(702, 'superadmin@gmail.com', 'Super Admin', '$2a$10$4InmGjvRWGearR9GA9y4j.aromNvgTQMO.P9rJzRbn85KX/Z.88YC');
 
 -- --------------------------------------------------------
 
@@ -240,7 +252,7 @@ CREATE TABLE `users_seq` (
 --
 
 INSERT INTO `users_seq` (`next_val`) VALUES
-(601);
+(801);
 
 --
 -- Indexes for dumped tables
@@ -315,13 +327,13 @@ ALTER TABLE `bookorders`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `orderdetails`
@@ -333,7 +345,7 @@ ALTER TABLE `orderdetails`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Constraints for dumped tables

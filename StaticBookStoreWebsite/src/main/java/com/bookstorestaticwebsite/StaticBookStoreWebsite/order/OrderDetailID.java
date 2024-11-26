@@ -4,6 +4,8 @@ import com.bookstorestaticwebsite.StaticBookStoreWebsite.book.Book;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Embeddable
 public class OrderDetailID {
    @Column(name="bookOrderId")
@@ -14,6 +16,8 @@ public class OrderDetailID {
     public OrderDetailID() {
     }
 
+    public OrderDetailID(int bookOrderId, int bookId) {
+    }
 
 
     public int getBookOrderId() {
@@ -31,4 +35,18 @@ public class OrderDetailID {
     public void setBookId(int bookId) {
         this.bookId = bookId;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if(this == obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false;
+        OrderDetailID orderDetailID = (OrderDetailID) obj;
+        return bookOrderId == orderDetailID.bookOrderId && bookId == orderDetailID.bookId;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(bookOrderId, bookId);
+    }
+
 }

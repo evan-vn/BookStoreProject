@@ -20,12 +20,16 @@ public class BookOrderService {
     }
 
     public List<BookOrder> getRecentOrders(){
-        Pageable pageable = PageRequest.of(0, 3);
+        Pageable pageable = PageRequest.of(0, 5);
         return bookOrderRepository.findRecentOrders(pageable);
     }
 
     public long getTotalOrders(){
         return bookOrderRepository.countTotalOrders();
+    }
+
+    public void deleteOrder(int oId){
+        bookOrderRepository.deleteById(oId);
     }
 
 
