@@ -7,6 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+    <script src="/js/common.js"></script>
     <title>User List</title>
 
     <link rel="stylesheet" type="text/css"  th:href="@{/css/style.css}">
@@ -37,8 +38,10 @@
             <td th:text=" ${user.email}"></td>
             <td th:text=" ${user.password}"></td>
             <td>  <a data-th-href="@{/admin/edit/{id} (id=${user.userId})}">Edit</a> &nbsp;
-                <a data-th-href="@{/admin/delete/{id}(id=${user.userId})}">
-                    Delete</a>
+                <a href="#"  th:data-href="@{/admin/delete/{id}(id=${user.userId})}"
+                   onclick="return confirmDeletion(this)">Delete
+
+                </a>
 
             </td>
         </tr>
@@ -50,5 +53,7 @@
 <br>
 <nav th:insert="~{./fragments/navigation :: #footer}"></nav>
 
+
+</script>
 </body>
 </html>

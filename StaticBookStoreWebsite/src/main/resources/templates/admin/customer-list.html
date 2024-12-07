@@ -7,6 +7,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
           crossorigin="anonymous"></script>
+  <script src="/js/common.js"></script>
   <title>Customer List</title>
 
   <link rel="stylesheet" type="text/css"  th:href="@{/css/style.css}">
@@ -51,12 +52,15 @@
         <td><a th:text=" ${c.registerDate}"> </a></td>
         &nbsp;
         <td> <a data-th-href="@{/admin/customer/edit/{cusId}(cusId=${c.customerId})}">Edit</a> &nbsp;
-           <a data-th-href="@{/admin/customer/delete/{cusId} (cusId=${c.customerId})}"> Delete</a>
+          <a href="#"   th:data-href="@{/admin/customer/delete/{cusId} (cusId=${c.customerId})}" onclick="return confirmDeletion(this)">Delete</a>
 
         </td>
       </tr>
       </tbody>
     </table>
+    <div>
+      <button onclick="scrollToTop()" id="scrollTopButton">Go to Top</button>
+    </div>
   </div>
 
 </div>
@@ -64,4 +68,7 @@
 <nav th:insert="~{./fragments/navigation :: #footer}"></nav>
 
 </body>
+<script>
+  function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+</script>
 </html>

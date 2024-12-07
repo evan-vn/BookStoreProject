@@ -27,12 +27,7 @@ public class OrderDetailService {
 
 
 
-//    @Transactional
-//    public void removeBookFromOrder(int bookOrderId, int bookId){
-//        OrderDetailID orderDetailID = new OrderDetailID(bookOrderId, bookId);
-//        orderDetailRepository.deleteById(orderDetailID);
-//        System.out.println("Deleted");
-//    }
+
 
 //    //For API
 //    public void createOrder(OrderDetail order){

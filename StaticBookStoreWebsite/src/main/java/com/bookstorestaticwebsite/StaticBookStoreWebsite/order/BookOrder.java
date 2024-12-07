@@ -9,7 +9,9 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.Date;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -59,18 +61,17 @@ public class BookOrder {
 //    @ManyToOne @JoinColumn(name = "orderDetailID", nullable = false)
 //    private OrderDetail orderDetail;
     @OneToMany(mappedBy = "bookOrder")
-    private Set<OrderDetail> orderDetails = new HashSet<>();
+    private List<OrderDetail> orderDetails = new ArrayList<>();
 
-    public Set<OrderDetail> getOrderDetails() {
+    public List<OrderDetail> getOrderDetails() {
         return orderDetails;
     }
 
-    public void setOrderDetails(Set<OrderDetail> orderDetails) {
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
         this.orderDetails = orderDetails;
     }
 
-    public BookOrder() {
-    }
+    public BookOrder() { this.orderDetails = new ArrayList<>(); }
 
     public BookOrder(int bookOrderId, @NonNull Date orderDate, @NonNull String firstName, @NonNull String lastName, @NonNull String addressLine1, String addressLine2, @NonNull String city, @NonNull String state, @NonNull String zipcode, @NonNull String country, String phone, @NonNull String paymentMethod, float subtotal, float shippingFee, float tax, float total, @NonNull String status, Customer customer) {
         this.bookOrderId = bookOrderId;

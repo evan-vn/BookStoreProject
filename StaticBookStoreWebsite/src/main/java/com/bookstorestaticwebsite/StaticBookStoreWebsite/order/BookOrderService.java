@@ -1,5 +1,6 @@
 package com.bookstorestaticwebsite.StaticBookStoreWebsite.order;
 
+import com.bookstorestaticwebsite.StaticBookStoreWebsite.book.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -31,6 +32,31 @@ public class BookOrderService {
     public void deleteOrder(int oId){
         bookOrderRepository.deleteById(oId);
     }
+
+    public void updateOrder(BookOrder bookOrder, int oId) {
+        BookOrder existing = getBookOrderById(oId);
+
+
+        // Update the status
+        existing.setStatus(bookOrder.getStatus());
+
+        // Clear and update order details
+        //existing.getOrderDetails().clear();
+        // Update order details
+        for (OrderDetail newDetail : bookOrder.getOrderDetails()) {
+            for (OrderDetail existingDetail : existing.getOrderDetails()) {
+                if (existingDetail.getOrderDetailID().getBookId() == newDetail.getOrderDetailID().getBookId()) {
+                    existingDetail.setQuantity(newDetail.getQuantity());
+                    break;
+                }
+            }
+        }
+         //Save the updated order
+        bookOrderRepository.save(existing);
+    }
+
+
+
 
 
 

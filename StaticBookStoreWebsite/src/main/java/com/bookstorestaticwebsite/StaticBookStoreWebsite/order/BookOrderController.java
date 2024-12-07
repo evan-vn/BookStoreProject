@@ -8,12 +8,11 @@ import com.bookstorestaticwebsite.StaticBookStoreWebsite.common.CommonConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import java.nio.file.Paths;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Controller
@@ -40,11 +39,30 @@ public class BookOrderController extends BaseController {
     @GetMapping("/edit/{oId}")
     public String editOrder(@PathVariable int oId, Model model){
         BookOrder bookOrder = bookOrderService.getBookOrderById(oId);
+        if (bookOrder.getOrderDetails() == null || bookOrder.getOrderDetails().isEmpty()) {
+            bookOrder.setOrderDetails(new ArrayList<>()); // Ensure orderDetails is initialized as a Set
+        }else { System.out.println("Order details size: " + bookOrder.getOrderDetails().size());
+            for(OrderDetail order : bookOrder.getOrderDetails()){
+                System.out.println(order);
+            }
+        }
         List<String> statusList = CommonConfig.STATUS_LIST;
         model.addAttribute("title", "Edit Order");
         model.addAttribute("bookOrder", bookOrder);
         model.addAttribute("statusList", statusList);
         return "admin/order-edit";
+    }
+    @PostMapping("/update/{oId}")
+    public String updateBookOrder(@ModelAttribute BookOrder bookOrder, @PathVariable int oId){
+        System.out.println("Received BookOrder: " + bookOrder);
+        if (bookOrder.getOrderDetails() != null) {
+            for (OrderDetail detail : bookOrder.getOrderDetails()) {
+                System.out.println("Detail: BookId = " + detail.getOrderDetailID().getBookId() + ", Quantity: " + detail.getQuantity()); }
+        } else {
+            System.out.println("Order details are null.");
+        }
+        bookOrderService.updateOrder(bookOrder, oId);
+        return  "redirect:/admin/order/all";
     }
 
     @GetMapping("/delete/{oId}")
